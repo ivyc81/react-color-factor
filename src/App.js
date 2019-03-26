@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Routers from './Routers';
 import './App.css';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+        colors: {red: 'red'},
+    }
+    this.addColor = this.addColor.bind(this);
+  }
+
+  addColor(color) {
+    const newColors = {...this.state.colors, [color.colorText]: color.color};
+    this.setState({colors: newColors});
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Routers colorData={ this.state.colors } triggerAddColor={ this.addColor }/>
       </div>
     );
   }
